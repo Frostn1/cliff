@@ -12,20 +12,20 @@ void printToken(Token* token) {
 
 	printf("%d\t%d-%d\t", token->type, token->line, token->column);
 	printf("%d-%d\t", token->line, token->column + token->length - 1);
+	printf("%.*s\n", token->length, token->lexeme);
 
-	if (token->type == TOKEN_IDENTIFIER || token->type == TOKEN_INT || token->type == TOKEN_FLOAT || token->type == TOKEN_STRING) {
-		printf("%.*s\n", token->length, token->lexeme);
-	}
-	else {
-		char* keyword = findKeywordByType(token->type);
+	// if (token->type == TOKEN_IDENTIFIER || token->type == TOKEN_INT || token->type == TOKEN_FLOAT || token->type == TOKEN_STRING) {
+	// }
+	// else {
+	// 	char* keyword = findKeywordByType(token->type);
 
-		if (keyword != NULL) {
-			printf("%s\n", keyword);
-		}
-		else {
-			printf("-\n");
-		}
-	}
+	// 	if (keyword != NULL) {
+	// 		printf("%s\n", keyword);
+	// 	}
+	// 	else {
+	// 		printf("-\n");
+	// 	}
+	// }
 }
 
 

@@ -18,8 +18,8 @@ void cleanLexer(Lexer* lex) {
 	lex->file = NULL;
 	lex->saved = NULL;
 	lex->column = lex->line = 1;
-	lex->index = lex->start = 0;
-	lex->chunkIndex = -1;
+	lex->index = lex->start = lex->chunkIndex = 0;
+	// lex->chunkIndex = -1;
 }
 
 void newLexer(Lexer* lex, FILE* file) {
@@ -86,10 +86,7 @@ void eatWhiteSpace(Lexer* lex) {
 			advance(lex);
 			break;
 		}
-		else {
-			return;
-		}
-
+		else return;
 
 		//comments
 	case '/':
@@ -114,6 +111,21 @@ void eatWhiteSpace(Lexer* lex) {
 	return;
 }
 
+void saveChar(Lexer* lex, char c) {
+    if(lex->saved) {
+        if(lex->isChunkSize == CHUNK_SIZE) {
+            realloc(lex->saved, (lex->savedSize + CHUNK_SIZE) * sizeof(char));
+            lex->isChunkSize = 0;
+        }
+    } else if (lex->saved == NULL) {
+        lex->saved = (char*)malloc(CHUNK_SIZE * sizeof(char));
+        lex->isChunkSize = 0;
+        lex->savedSize = 0;
+    }
+    lex->saved[lex->savedSize++] = c;
+    lex->isChunkSize += 1;
+}
+
 char advance(Lexer* lex) {
 	if ((lex->currentChar = peek(lex)) == '\n') {
 		lex->line++;
@@ -129,26 +141,13 @@ char advance(Lexer* lex) {
         fread(lex->nextChunk, sizeof(char), CHUNK_SIZE, lex->file);
         lex->chunkIndex = 0;
 	}
-    printf("NOT SAVED %c\n", lex->currentChar);
 
 	return lex->currentChar;
 }
 
 char advanceWithSave(Lexer* lex) {
     advance(lex);
-    printf("SAVED %c\n", lex->currentChar);
-    if(lex->saved) {
-        if(lex->isChunkSize == CHUNK_SIZE) {
-            realloc(lex->saved, (lex->savedSize + CHUNK_SIZE) * sizeof(char));
-            lex->isChunkSize = 0;
-        }
-    } else if (lex->saved == NULL) {
-        lex->saved = (char*)malloc(CHUNK_SIZE * sizeof(char));
-        lex->isChunkSize = 0;
-        lex->savedSize = 0;
-    }
-    lex->saved[lex->savedSize++] = lex->currentChar;
-    lex->isChunkSize += 1;
+    saveChar(lex, lex->currentChar);
    	return lex->currentChar;
 }
 
@@ -181,6 +180,7 @@ Token* makeErrorToken(Lexer* lex, char* msg, int startLine) {
 }
 
 Token* makeNumber(Lexer* lex) {
+    saveChar(lex, lex->currentChar);
 	while (isDigit(peek(lex))) advanceWithSave(lex);
 
 	TokenType semiType = TOKEN_INT;
@@ -212,20 +212,19 @@ Token* makeNumber(Lexer* lex) {
 
 
 Token* makeKeywordOrIdentifier(Lexer* lex) {
-
+    saveChar(lex, lex->currentChar);
 	advanceWithSave(lex); //first letter can only be alpha
 
 	while (isIdentifier(peek(lex))) {
 		advanceWithSave(lex);
 	}
-
-	//scan for a keyword
+	// Scan for a keyword
 	for (int i = 0; keywordTypes[i].keyword; i++) {
-		if (strlen(keywordTypes[i].keyword) == lex->index - lex->start && !strncmp(keywordTypes[i].keyword, lex->saved, lex->index - lex->start)) {
+		if (strlen(keywordTypes[i].keyword) == lex->savedSize && !strncmp(keywordTypes[i].keyword, lex->saved, lex->savedSize)) {
 			Token* toke = (Token*)malloc(sizeof(Token));
 
 			toke->type = keywordTypes[i].type;
-			toke->length = lex->index - lex->start;
+			toke->length = lex->savedSize;
 			toke->lexeme = (char*)malloc(sizeof(char) * (toke->length + 1));
 			strncpy(toke->lexeme, lex->saved, toke->length);
 			toke->lexeme[toke->length] = '\0';
@@ -237,15 +236,17 @@ Token* makeKeywordOrIdentifier(Lexer* lex) {
 			lex->saved = NULL;
 			lex->savedSize = 0;
 			lex->isChunkSize = 0;
+			advance(lex);
+
 			return toke;
 		}
 	}
 
-	//return an identifier
+	// Return an identifier
 	Token* toke = (Token*)malloc(sizeof(Token));
 
 	toke->type = TOKEN_IDENTIFIER;
-	toke->length = lex->index - lex->start;
+	toke->length = lex->savedSize;
 	toke->lexeme = (char*)malloc(sizeof(char) * (toke->length + 1));
 	strncpy(toke->lexeme, lex->saved, toke->length);
 	toke->lexeme[toke->length] = '\0';
@@ -256,10 +257,13 @@ Token* makeKeywordOrIdentifier(Lexer* lex) {
 	lex->savedSize = 0;
 	lex->isChunkSize = 0;
 
+	advance(lex);
+
 	return toke;
 }
 
 Token* makeString(Lexer* lex, char terminator) {
+    saveChar(lex, lex->currentChar);
 	advanceWithSave(lex);
 	int startLine = lex->line;
 	while (peek(lex) && peek(lex) != terminator) {
@@ -271,7 +275,7 @@ Token* makeString(Lexer* lex, char terminator) {
 		advanceWithSave(lex);
 	}
 
-	advanceWithSave(lex); //eat terminator
+	advanceWithSave(lex); // Eat terminator
 
 	if (isAtEnd(lex)) {
 		return makeErrorToken(lex, "Unterminated string", startLine);
@@ -281,7 +285,7 @@ Token* makeString(Lexer* lex, char terminator) {
 	Token* toke = (Token*)malloc(sizeof(Token));
 
 	toke->type = TOKEN_STRING;
-	toke->length = lex->index - lex->start - 1;
+	toke->length = lex->savedSize;
 	toke->lexeme = (char*)malloc(sizeof(char) * (toke->length + 1));
 	strncpy(toke->lexeme, lex->saved, toke->length);
 	toke->lexeme[toke->length] = '\0';

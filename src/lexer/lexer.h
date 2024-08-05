@@ -49,6 +49,7 @@ char show(Lexer* lex);
 **/
 char advance(Lexer* lex);
 char advanceWithSave(Lexer* lex);
+void saveChar(Lexer* lex, char c);
 // Checks if a char is a digit
 bool isDigit(char c);
 // Checks if a char is a letter
