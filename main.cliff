@@ -1,0 +1,9 @@
+fn ADD(int a, int b) int {
+	return a + b
+}
+
+int i = (ADD(1, 2) + 1)*5
+int x = 52
+float y = 5.2
+"hello"
+'hello world'

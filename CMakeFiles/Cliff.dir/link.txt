@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/cliff.dir/src/lexer/keyword.c.o CMakeFiles/cliff.dir/src/lexer/lexer.c.o CMakeFiles/cliff.dir/src/debug.c.o CMakeFiles/cliff.dir/src/main.c.o -o cliff 
