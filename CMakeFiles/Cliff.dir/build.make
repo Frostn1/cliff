@@ -97,10 +97,52 @@ CMakeFiles/cliff.dir/src/lexer/lexer.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cliff.dir/src/lexer/lexer.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/c/Work/cliff/src/lexer/lexer.c -o CMakeFiles/cliff.dir/src/lexer/lexer.c.s
 
+CMakeFiles/cliff.dir/src/parser/expression.c.o: CMakeFiles/cliff.dir/flags.make
+CMakeFiles/cliff.dir/src/parser/expression.c.o: src/parser/expression.c
+CMakeFiles/cliff.dir/src/parser/expression.c.o: CMakeFiles/cliff.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Work/cliff/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/cliff.dir/src/parser/expression.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/cliff.dir/src/parser/expression.c.o -MF CMakeFiles/cliff.dir/src/parser/expression.c.o.d -o CMakeFiles/cliff.dir/src/parser/expression.c.o -c /mnt/c/Work/cliff/src/parser/expression.c
+
+CMakeFiles/cliff.dir/src/parser/expression.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cliff.dir/src/parser/expression.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/c/Work/cliff/src/parser/expression.c > CMakeFiles/cliff.dir/src/parser/expression.c.i
+
+CMakeFiles/cliff.dir/src/parser/expression.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cliff.dir/src/parser/expression.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/c/Work/cliff/src/parser/expression.c -o CMakeFiles/cliff.dir/src/parser/expression.c.s
+
+CMakeFiles/cliff.dir/src/parser/parse_tree.c.o: CMakeFiles/cliff.dir/flags.make
+CMakeFiles/cliff.dir/src/parser/parse_tree.c.o: src/parser/parse_tree.c
+CMakeFiles/cliff.dir/src/parser/parse_tree.c.o: CMakeFiles/cliff.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Work/cliff/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/cliff.dir/src/parser/parse_tree.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/cliff.dir/src/parser/parse_tree.c.o -MF CMakeFiles/cliff.dir/src/parser/parse_tree.c.o.d -o CMakeFiles/cliff.dir/src/parser/parse_tree.c.o -c /mnt/c/Work/cliff/src/parser/parse_tree.c
+
+CMakeFiles/cliff.dir/src/parser/parse_tree.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cliff.dir/src/parser/parse_tree.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/c/Work/cliff/src/parser/parse_tree.c > CMakeFiles/cliff.dir/src/parser/parse_tree.c.i
+
+CMakeFiles/cliff.dir/src/parser/parse_tree.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cliff.dir/src/parser/parse_tree.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/c/Work/cliff/src/parser/parse_tree.c -o CMakeFiles/cliff.dir/src/parser/parse_tree.c.s
+
+CMakeFiles/cliff.dir/src/parser/parser.c.o: CMakeFiles/cliff.dir/flags.make
+CMakeFiles/cliff.dir/src/parser/parser.c.o: src/parser/parser.c
+CMakeFiles/cliff.dir/src/parser/parser.c.o: CMakeFiles/cliff.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Work/cliff/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/cliff.dir/src/parser/parser.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/cliff.dir/src/parser/parser.c.o -MF CMakeFiles/cliff.dir/src/parser/parser.c.o.d -o CMakeFiles/cliff.dir/src/parser/parser.c.o -c /mnt/c/Work/cliff/src/parser/parser.c
+
+CMakeFiles/cliff.dir/src/parser/parser.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cliff.dir/src/parser/parser.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/c/Work/cliff/src/parser/parser.c > CMakeFiles/cliff.dir/src/parser/parser.c.i
+
+CMakeFiles/cliff.dir/src/parser/parser.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cliff.dir/src/parser/parser.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/c/Work/cliff/src/parser/parser.c -o CMakeFiles/cliff.dir/src/parser/parser.c.s
+
 CMakeFiles/cliff.dir/src/debug.c.o: CMakeFiles/cliff.dir/flags.make
 CMakeFiles/cliff.dir/src/debug.c.o: src/debug.c
 CMakeFiles/cliff.dir/src/debug.c.o: CMakeFiles/cliff.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Work/cliff/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/cliff.dir/src/debug.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Work/cliff/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/cliff.dir/src/debug.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/cliff.dir/src/debug.c.o -MF CMakeFiles/cliff.dir/src/debug.c.o.d -o CMakeFiles/cliff.dir/src/debug.c.o -c /mnt/c/Work/cliff/src/debug.c
 
 CMakeFiles/cliff.dir/src/debug.c.i: cmake_force
@@ -114,7 +156,7 @@ CMakeFiles/cliff.dir/src/debug.c.s: cmake_force
 CMakeFiles/cliff.dir/src/main.c.o: CMakeFiles/cliff.dir/flags.make
 CMakeFiles/cliff.dir/src/main.c.o: src/main.c
 CMakeFiles/cliff.dir/src/main.c.o: CMakeFiles/cliff.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Work/cliff/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/cliff.dir/src/main.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Work/cliff/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/cliff.dir/src/main.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/cliff.dir/src/main.c.o -MF CMakeFiles/cliff.dir/src/main.c.o.d -o CMakeFiles/cliff.dir/src/main.c.o -c /mnt/c/Work/cliff/src/main.c
 
 CMakeFiles/cliff.dir/src/main.c.i: cmake_force
@@ -129,6 +171,9 @@ CMakeFiles/cliff.dir/src/main.c.s: cmake_force
 cliff_OBJECTS = \
 "CMakeFiles/cliff.dir/src/lexer/keyword.c.o" \
 "CMakeFiles/cliff.dir/src/lexer/lexer.c.o" \
+"CMakeFiles/cliff.dir/src/parser/expression.c.o" \
+"CMakeFiles/cliff.dir/src/parser/parse_tree.c.o" \
+"CMakeFiles/cliff.dir/src/parser/parser.c.o" \
 "CMakeFiles/cliff.dir/src/debug.c.o" \
 "CMakeFiles/cliff.dir/src/main.c.o"
 
@@ -137,11 +182,14 @@ cliff_EXTERNAL_OBJECTS =
 
 cliff: CMakeFiles/cliff.dir/src/lexer/keyword.c.o
 cliff: CMakeFiles/cliff.dir/src/lexer/lexer.c.o
+cliff: CMakeFiles/cliff.dir/src/parser/expression.c.o
+cliff: CMakeFiles/cliff.dir/src/parser/parse_tree.c.o
+cliff: CMakeFiles/cliff.dir/src/parser/parser.c.o
 cliff: CMakeFiles/cliff.dir/src/debug.c.o
 cliff: CMakeFiles/cliff.dir/src/main.c.o
 cliff: CMakeFiles/cliff.dir/build.make
 cliff: CMakeFiles/cliff.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Work/cliff/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable cliff"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Work/cliff/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable cliff"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cliff.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -12,6 +12,9 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/mnt/c/Work/cliff/src/lexer/keyword.c" "CMakeFiles/cliff.dir/src/lexer/keyword.c.o" "gcc" "CMakeFiles/cliff.dir/src/lexer/keyword.c.o.d"
   "/mnt/c/Work/cliff/src/lexer/lexer.c" "CMakeFiles/cliff.dir/src/lexer/lexer.c.o" "gcc" "CMakeFiles/cliff.dir/src/lexer/lexer.c.o.d"
   "/mnt/c/Work/cliff/src/main.c" "CMakeFiles/cliff.dir/src/main.c.o" "gcc" "CMakeFiles/cliff.dir/src/main.c.o.d"
+  "/mnt/c/Work/cliff/src/parser/expression.c" "CMakeFiles/cliff.dir/src/parser/expression.c.o" "gcc" "CMakeFiles/cliff.dir/src/parser/expression.c.o.d"
+  "/mnt/c/Work/cliff/src/parser/parse_tree.c" "CMakeFiles/cliff.dir/src/parser/parse_tree.c.o" "gcc" "CMakeFiles/cliff.dir/src/parser/parse_tree.c.o.d"
+  "/mnt/c/Work/cliff/src/parser/parser.c" "CMakeFiles/cliff.dir/src/parser/parser.c.o" "gcc" "CMakeFiles/cliff.dir/src/parser/parser.c.o.d"
   )
 
 # Targets to which this target links.

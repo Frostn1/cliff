@@ -2,16 +2,9 @@
 #include "token_type.h"
 #include <stdio.h>
 
-void freeToken(Token* toke) {
-	if (!toke) return;
-	free(toke->lexeme);
-	free(toke);
-}
-
 void freeLexer(Lexer* lex) {
 	if (!lex) return;
 	free(lex->file);
-	// free(lex);
 }
 
 void cleanLexer(Lexer* lex) {
@@ -19,7 +12,6 @@ void cleanLexer(Lexer* lex) {
 	lex->saved = NULL;
 	lex->column = lex->line = 1;
 	lex->index = lex->start = lex->chunkIndex = 0;
-	// lex->chunkIndex = -1;
 }
 
 void newLexer(Lexer* lex, FILE* file) {

@@ -2,9 +2,13 @@
 #define PARSER_H
 
 #include <stdbool.h>
+#include <stdarg.h>
 
 #include "../lexer/lexer.h"
+#include "../lexer/token_type.h"
 #include "parse_tree.h"
+#include "expression.h"
+
 // #include "SymbolTable.h"
 // #include "LoadBuiltin.h"
 
@@ -16,14 +20,22 @@
 typedef struct Parser {
 	Lexer* lex;
 	Token* current;
-	Token* pre;
+	Token* prev;
 
 	bool error; // Tells if there was an error in the code, so to figure out if to continue to the visitor stage or not
 	bool panic; // Tells if we are in a middle of an error and wheter to ignore new errors or not
 
 	ParseTree* mainTree;
-	// Table* table;
+	bool (*match)(Parser* par, size_t size, ...);
+	bool (*check)(Parser* par, TokenType type);
+    bool (*isAtEnd)(Parser* par);
+    Token* (*peek)(Parser* par);
+    Token* (*previous)(Parser* par);
+    Token* (*advance)(Parser* par);
+
 } Parser;
+
+
 
 //forward declare the precedent rules, from low to high
 typedef enum {
@@ -43,35 +55,31 @@ typedef enum {
 
 // Creates a new parser
 void newParser(Parser* par, Lexer* lex);
-void parserAdvance(Parser* par);
-void parseError(Parser* parser, Token* token, const char* message);
-
-
 void parse(Parser* par);
-// Lists option of different possible parse trees
-void scanParser(Parser* par, ParseTree* current);
-// Advances the parser to theh next token coming from the lexer
-
-bool expression(Parser* par, ParseTree* current, TokenType EO_Expr);
-// Lists possible creation statements of parse tress
-bool statement(Parser* par, ParseTree* current);
-// Prints error to screen ( user )
-// Comes usually after error function, skips to next possible starting token to start a parse tree
 void synchronize(Parser* parser);
 
-// Templates
-// Function to create a variable creation parse tree
-bool parseVariableCreation(Parser* par, ParseTree* current);
-bool parseAssign(Parser* par, ParseTree* current);
-bool expression(Parser* par, ParseTree* current, TokenType stopper); // stopper will tell what character is last to come to look for
-bool parseConditional(Parser* par, ParseTree* current);
-bool parseLoop(Parser* par, ParseTree* current);
-bool parseBody(Parser* par, ParseTree* current);
-bool parseFunction(Parser* par, ParseTree* current);
-bool parseArgs(Parser* par, ParseTree* current);
-bool parseCalls(Parser* par, ParseTree* current);
-bool parseReturn(Parser* par, ParseTree* current);
-bool parseElse(Parser* par, ParseTree* current);
+// Utilities
+void error(Parser* parser, Token* token, const char* message);
+bool __MATCH__(Parser* par, size_t size, ...); // Variadic is list of TokenType
+bool __CHECK__(Parser* par, TokenType type);
+bool __IS_AT_END__(Parser* par);
+Token* __PEEK__(Parser* par);
+Token* __PREVIOUS__(Parser* par);
+Token* __ADVANCE__(Parser* par);
+
+// X
+Token* consume(Parser* par, TokenType type, char* message);
+
+// Parsing
+Expr* expression(Parser* par);
+Expr* term(Parser* par);
+Expr* factor(Parser* par);
+Expr* unary(Parser* par);
+Expr* primary(Parser* par);
+
+
+Expr* comparison(Parser* par);
+Expr* equality(Parser* par);
 
 
 #endif // !PARSER_H

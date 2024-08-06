@@ -3,7 +3,7 @@
 
 
 typedef enum {
-	
+
 	TOKEN_LEFT_PAREN = 0, //single character token s
 	TOKEN_RIGHT_PAREN = 1,
 	TOKEN_LEFT_BRACE = 2,
@@ -42,7 +42,7 @@ typedef enum {
 	TOKEN_DOT_DOT = 35,
 	TOKEN_QUESTION = 36,//ternary operato r
 	TOKEN_COLON = 37,
-	TOKEN_IDENTIFIER,//literal = 38s
+	TOKEN_IDENTIFIER = 38,//literal = 38s
 	TOKEN_INT = 39,
 	TOKEN_FLOAT = 40,
 	TOKEN_STRING = 41,
@@ -50,7 +50,6 @@ typedef enum {
 	TOKEN_FALSE = 43,
 	TOKEN_FOR = 44,
 	TOKEN_IF = 45,
-	TOKEN_PRINT = 46,
 	TOKEN_RETURN = 47,
 	TOKEN_TRUE = 48,
 	TOKEN_LOOP = 49,
@@ -59,9 +58,8 @@ typedef enum {
 	TOKEN_ERROR = 52,
 	TOKEN_EOF = 53,
 	TOKEN_END_LINE = 54,
-	TOKEN_INT_V = 55,// Variables Primitive Usable Type s
-	TOKEN_FLOAT_V = 56,
-	TOKEN_STRING_V = 57
+	TOKEN_NULL = 55,
+	TOKEN_NUMBER = 56,
 
 } TokenType;
 

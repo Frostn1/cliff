@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 project(cliff LANGUAGES C)
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD 11)
 
 file(GLOB LEVEL_SOURCE src/**/*.c)
 file(GLOB SOURCE src/*.c)
@@ -14,6 +14,8 @@ add_executable(cliff
 target_include_directories(cliff PUBLIC
     ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/src/lexer
+    ${CMAKE_SOURCE_DIR}/src/parser
+
 )
 
 

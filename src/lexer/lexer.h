@@ -5,19 +5,12 @@
 #include <stdbool.h>
 #include "token_type.h"
 #include "keyword.h"
-
+#include "token.h"
 
 
 #define DONT_OVERWRITE_BASELINE -1
 #define CHUNK_SIZE 32
 
-
-typedef struct Token {
-	TokenType type; // Type of the token object
-	char* lexeme; // String rep of the token itself
-	int length; // Length of the lexeme field
-	int line, column; // Line and column the token is found on in the raw code
-} Token;
 
 typedef struct Lexer {
 
@@ -75,8 +68,6 @@ Token* makeKeywordOrIdentifier(Lexer* lexer);
 Token* makeErrorToken(Lexer* lexer, char* msg, int startLine);
 // Checks wheter current character in lexer in equal to char in arg and return bool
 bool match(Lexer* lexer, char c);
-// Free token's memory
-void freeToken(Token* toke);
 // Free lexer's memory
 void freeLexer(Lexer* lex);
 #endif // !LEXER_H

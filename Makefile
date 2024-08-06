@@ -225,6 +225,78 @@ src/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/main.c.s
 .PHONY : src/main.c.s
 
+src/parser/expression.o: src/parser/expression.c.o
+.PHONY : src/parser/expression.o
+
+# target to build an object file
+src/parser/expression.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/parser/expression.c.o
+.PHONY : src/parser/expression.c.o
+
+src/parser/expression.i: src/parser/expression.c.i
+.PHONY : src/parser/expression.i
+
+# target to preprocess a source file
+src/parser/expression.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/parser/expression.c.i
+.PHONY : src/parser/expression.c.i
+
+src/parser/expression.s: src/parser/expression.c.s
+.PHONY : src/parser/expression.s
+
+# target to generate assembly for a file
+src/parser/expression.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/parser/expression.c.s
+.PHONY : src/parser/expression.c.s
+
+src/parser/parse_tree.o: src/parser/parse_tree.c.o
+.PHONY : src/parser/parse_tree.o
+
+# target to build an object file
+src/parser/parse_tree.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/parser/parse_tree.c.o
+.PHONY : src/parser/parse_tree.c.o
+
+src/parser/parse_tree.i: src/parser/parse_tree.c.i
+.PHONY : src/parser/parse_tree.i
+
+# target to preprocess a source file
+src/parser/parse_tree.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/parser/parse_tree.c.i
+.PHONY : src/parser/parse_tree.c.i
+
+src/parser/parse_tree.s: src/parser/parse_tree.c.s
+.PHONY : src/parser/parse_tree.s
+
+# target to generate assembly for a file
+src/parser/parse_tree.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/parser/parse_tree.c.s
+.PHONY : src/parser/parse_tree.c.s
+
+src/parser/parser.o: src/parser/parser.c.o
+.PHONY : src/parser/parser.o
+
+# target to build an object file
+src/parser/parser.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/parser/parser.c.o
+.PHONY : src/parser/parser.c.o
+
+src/parser/parser.i: src/parser/parser.c.i
+.PHONY : src/parser/parser.i
+
+# target to preprocess a source file
+src/parser/parser.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/parser/parser.c.i
+.PHONY : src/parser/parser.c.i
+
+src/parser/parser.s: src/parser/parser.c.s
+.PHONY : src/parser/parser.s
+
+# target to generate assembly for a file
+src/parser/parser.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/parser/parser.c.s
+.PHONY : src/parser/parser.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -246,6 +318,15 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/parser/expression.o"
+	@echo "... src/parser/expression.i"
+	@echo "... src/parser/expression.s"
+	@echo "... src/parser/parse_tree.o"
+	@echo "... src/parser/parse_tree.i"
+	@echo "... src/parser/parse_tree.s"
+	@echo "... src/parser/parser.o"
+	@echo "... src/parser/parser.i"
+	@echo "... src/parser/parser.s"
 .PHONY : help
 
 
