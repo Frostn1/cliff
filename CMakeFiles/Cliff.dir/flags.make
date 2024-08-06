@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I/mnt/c/Work/cliff/src -I/mnt/c/Work/cliff/src/lexer -I/mnt/c/Work/cliff/src/parser
+C_INCLUDES = -I/mnt/c/Work/cliff/src -I/mnt/c/Work/cliff/src/lexer -I/mnt/c/Work/cliff/src/parser -I/mnt/c/Work/cliff/src/tool
 
 C_FLAGS = -std=gnu11
 

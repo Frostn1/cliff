@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "debug.h"
-#include "lexer/lexer.h"
-#include "parser/parser.h"
+#include "src/lexer/lexer.h"
+#include "src/parser/parser.h"
+#include "src/tool/visitor.h"
 
 char* getFileContent(char* filePath) {
 	FILE* filePointer = fopen(filePath, "r");
@@ -23,7 +24,8 @@ int main() {
     FILE* filePointer = fopen("./main.cliff", "r");
     newLexer(&lexer, filePointer);
     newParser(&parser,&lexer);
-    parse(&parser);
+    Expr* expr = parse(&parser);
+    // printf("%s", accept(expr));
     // Token* token = NULL;
 
     // do {

@@ -8,6 +8,7 @@ file(GLOB SOURCE src/*.c)
 add_executable(cliff
     ${LEVEL_SOURCE}
     ${SOURCE}
+    main.c
 )
 
 
@@ -15,7 +16,7 @@ target_include_directories(cliff PUBLIC
     ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/src/lexer
     ${CMAKE_SOURCE_DIR}/src/parser
-
+    ${CMAKE_SOURCE_DIR}/src/tool
 )
 
 

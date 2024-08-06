@@ -6,7 +6,6 @@
 
 #include "../lexer/lexer.h"
 #include "../lexer/token_type.h"
-#include "parse_tree.h"
 #include "expression.h"
 
 // #include "SymbolTable.h"
@@ -15,9 +14,10 @@
 #define START_TREE 0
 #define END_VARIABLE_TREE 3
 
+typedef struct Parser Parser;
 
 
-typedef struct Parser {
+struct Parser {
 	Lexer* lex;
 	Token* current;
 	Token* prev;
@@ -25,15 +25,15 @@ typedef struct Parser {
 	bool error; // Tells if there was an error in the code, so to figure out if to continue to the visitor stage or not
 	bool panic; // Tells if we are in a middle of an error and wheter to ignore new errors or not
 
-	ParseTree* mainTree;
 	bool (*match)(Parser* par, size_t size, ...);
 	bool (*check)(Parser* par, TokenType type);
     bool (*isAtEnd)(Parser* par);
     Token* (*peek)(Parser* par);
     Token* (*previous)(Parser* par);
     Token* (*advance)(Parser* par);
+    void (*synchronize)(Parser* par);
 
-} Parser;
+};
 
 
 
@@ -55,7 +55,7 @@ typedef enum {
 
 // Creates a new parser
 void newParser(Parser* par, Lexer* lex);
-void parse(Parser* par);
+Expr* parse(Parser* par);
 void synchronize(Parser* parser);
 
 // Utilities
@@ -66,6 +66,7 @@ bool __IS_AT_END__(Parser* par);
 Token* __PEEK__(Parser* par);
 Token* __PREVIOUS__(Parser* par);
 Token* __ADVANCE__(Parser* par);
+void __SYNCHRONIZE__(Parser* par);
 
 // X
 Token* consume(Parser* par, TokenType type, char* message);

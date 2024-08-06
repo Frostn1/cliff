@@ -129,6 +129,30 @@ cliff/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/build
 .PHONY : cliff/fast
 
+main.o: main.c.o
+.PHONY : main.o
+
+# target to build an object file
+main.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/main.c.o
+.PHONY : main.c.o
+
+main.i: main.c.i
+.PHONY : main.i
+
+# target to preprocess a source file
+main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/main.c.i
+.PHONY : main.c.i
+
+main.s: main.c.s
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/main.c.s
+.PHONY : main.c.s
+
 src/debug.o: src/debug.c.o
 .PHONY : src/debug.o
 
@@ -201,29 +225,29 @@ src/lexer/lexer.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/lexer/lexer.c.s
 .PHONY : src/lexer/lexer.c.s
 
-src/main.o: src/main.c.o
-.PHONY : src/main.o
+src/lexer/token.o: src/lexer/token.c.o
+.PHONY : src/lexer/token.o
 
 # target to build an object file
-src/main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/main.c.o
-.PHONY : src/main.c.o
+src/lexer/token.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/lexer/token.c.o
+.PHONY : src/lexer/token.c.o
 
-src/main.i: src/main.c.i
-.PHONY : src/main.i
+src/lexer/token.i: src/lexer/token.c.i
+.PHONY : src/lexer/token.i
 
 # target to preprocess a source file
-src/main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/main.c.i
-.PHONY : src/main.c.i
+src/lexer/token.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/lexer/token.c.i
+.PHONY : src/lexer/token.c.i
 
-src/main.s: src/main.c.s
-.PHONY : src/main.s
+src/lexer/token.s: src/lexer/token.c.s
+.PHONY : src/lexer/token.s
 
 # target to generate assembly for a file
-src/main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/main.c.s
-.PHONY : src/main.c.s
+src/lexer/token.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/lexer/token.c.s
+.PHONY : src/lexer/token.c.s
 
 src/parser/expression.o: src/parser/expression.c.o
 .PHONY : src/parser/expression.o
@@ -297,6 +321,54 @@ src/parser/parser.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/parser/parser.c.s
 .PHONY : src/parser/parser.c.s
 
+src/tool/string_builder.o: src/tool/string_builder.c.o
+.PHONY : src/tool/string_builder.o
+
+# target to build an object file
+src/tool/string_builder.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/tool/string_builder.c.o
+.PHONY : src/tool/string_builder.c.o
+
+src/tool/string_builder.i: src/tool/string_builder.c.i
+.PHONY : src/tool/string_builder.i
+
+# target to preprocess a source file
+src/tool/string_builder.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/tool/string_builder.c.i
+.PHONY : src/tool/string_builder.c.i
+
+src/tool/string_builder.s: src/tool/string_builder.c.s
+.PHONY : src/tool/string_builder.s
+
+# target to generate assembly for a file
+src/tool/string_builder.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/tool/string_builder.c.s
+.PHONY : src/tool/string_builder.c.s
+
+src/tool/visitor.o: src/tool/visitor.c.o
+.PHONY : src/tool/visitor.o
+
+# target to build an object file
+src/tool/visitor.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/tool/visitor.c.o
+.PHONY : src/tool/visitor.c.o
+
+src/tool/visitor.i: src/tool/visitor.c.i
+.PHONY : src/tool/visitor.i
+
+# target to preprocess a source file
+src/tool/visitor.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/tool/visitor.c.i
+.PHONY : src/tool/visitor.c.i
+
+src/tool/visitor.s: src/tool/visitor.c.s
+.PHONY : src/tool/visitor.s
+
+# target to generate assembly for a file
+src/tool/visitor.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cliff.dir/build.make CMakeFiles/cliff.dir/src/tool/visitor.c.s
+.PHONY : src/tool/visitor.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -306,6 +378,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... cliff"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 	@echo "... src/debug.o"
 	@echo "... src/debug.i"
 	@echo "... src/debug.s"
@@ -315,9 +390,9 @@ help:
 	@echo "... src/lexer/lexer.o"
 	@echo "... src/lexer/lexer.i"
 	@echo "... src/lexer/lexer.s"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... src/lexer/token.o"
+	@echo "... src/lexer/token.i"
+	@echo "... src/lexer/token.s"
 	@echo "... src/parser/expression.o"
 	@echo "... src/parser/expression.i"
 	@echo "... src/parser/expression.s"
@@ -327,6 +402,12 @@ help:
 	@echo "... src/parser/parser.o"
 	@echo "... src/parser/parser.i"
 	@echo "... src/parser/parser.s"
+	@echo "... src/tool/string_builder.o"
+	@echo "... src/tool/string_builder.i"
+	@echo "... src/tool/string_builder.s"
+	@echo "... src/tool/visitor.o"
+	@echo "... src/tool/visitor.i"
+	@echo "... src/tool/visitor.s"
 .PHONY : help
 
 

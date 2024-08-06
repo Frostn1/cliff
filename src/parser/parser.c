@@ -1,25 +1,22 @@
-#include "Parser.h"
-#include "Postfix.h"
-#include "expression.h"
 #include "parser.h"
 
 void newParser(Parser* par, Lexer* lex) {
 	par->lex = lex;
-	par->pre = par->current = NULL;
+	par->prev = par->current = NULL;
 	par->error = par->panic = 0;
-	par->mainTree = newTree(MAIN_PARSE, NULL);
+	// par->mainTree = newTree(MAIN_PARSE, NULL);
 	par->match = &__MATCH__;
 	par->check = &__CHECK__;
     par->isAtEnd = &__IS_AT_END__;
     par->peek = &__PEEK__;
     par->previous = &__PREVIOUS__;
     par->advance = &__ADVANCE__;
+    par->synchronize = &__SYNCHRONIZE__;
 
 	// par->table = (Table*)malloc(sizeof(Table));
 	// newTable(par->table);
 	// loadFunctionsToTable(par->table);
 }
-
 
 
 // ============================== Utilities ==============================
@@ -60,27 +57,56 @@ bool __MATCH__(Parser* par, size_t size, ...) {
     va_end(ptr);
     return false;
 }
+
 bool __CHECK__(Parser* par, TokenType type) {
     if (par->isAtEnd(par)) return false;
     return par->peek(par)->type == type;
 }
+
 bool __IS_AT_END__(Parser* par) {
-
+    return par->peek(par)->type == TOKEN_EOF;
 }
+
 Token* __PEEK__(Parser* par) {
-
+    return par->current;
 }
-Token* __PREVIOUS(Parser* par) {
 
+Token* __PREVIOUS__(Parser* par) {
+    return par->prev;
 }
+
 Token* __ADVANCE__(Parser* par) {
 	par->prev = par->current;
 	par->current = scanLexer(par->lex);
-	if (par->current->type == TOKEN_ERROR) error(par, par->current, "Lexer error");
+	return par->previous(par);
+	// if (par->current->type == TOKEN_ERROR) error(par, par->current, "Lexer error");
 }
+
+void __SYNCHRONIZE__(Parser* par) {
+    par->advance(par);
+
+    while (!par->isAtEnd(par)) {
+      if (par->previous(par)->type == SEMICOLON) return;
+
+      switch (par->peek(par)->type) {
+        case FUNCTION:
+        case LOOP:
+        case PRINT:
+        case IF:
+        case RETURN:
+          return;
+      }
+
+      par->advance(par);
+    }
+  }
 
 
 // ============================== X ==============================
+
+Expr* parse(Parser* par) {
+    return expression(par);
+}
 
 
 Token* consume(Parser* par, TokenType type, char* message) {
@@ -93,38 +119,40 @@ Token* consume(Parser* par, TokenType type, char* message) {
 // ============================== Parsing ==============================
 
 Expr* primary(Parser* par) {
-    if (par->match(par, 3, TOKEN_FALSE, TOKEN_TRUE, TOKEN_NULL)) return newExprLiteral(par->current);
+    if (par->match(par, 3, FALSE, TRUE, NULL)) return newExprLiteral(par->current);
 
     if (par->match(par, 2, TOKEN_NUMBER, TOKEN_STRING)) {
-      return newExprLiteral(par->prev);
+      return newExprLiteral(par->previous(par));
     }
 
-    if (par->match(par, 1, TOKEN_LEFT_PAREN)) {
+    if (par->match(par, 1, LEFT_PAREN)) {
       Expr* expr = expression(par);
-      consume(TOKEN_RIGHT_PAREN, "Expect ')' after expression.");
-      return new Expr.Grouping(expr);
+      consume(par, RIGHT_PAREN, "Expect ')' after expression.");
+      return newExprGrouping(expr);
     }
-  }
+
+    error(par, par->peek(par),"Expect expression.");
+}
 
 
 
 Expr* unary(Parser* par) {
-    if (match(BANG, MINUS)) {
-      Token operator = previous();
-      Expr right = unary();
-      return new Expr.Unary(operator, right);
+    if (par->match(par, 2, BANG, MINUS)) {
+      Token* operator = par->previous(par);
+      Expr* right = unary(par);
+      return newExprUnary(operator, right);
     }
 
-    return primary();
+    return primary(par);
 }
 
 Expr* factor(Parser* par) {
-    Expr expr = unary();
+    Expr* expr = unary(par);
 
-    while (match(SLASH, STAR)) {
-      Token operator = previous();
-      Expr right = unary();
-      expr = new Expr.Binary(expr, operator, right);
+    while (par->match(par, 2, SLASH, STAR)) {
+      Token* operator = par->previous(par);
+      Expr* right = unary(par);
+      expr = newExprBinary(expr, operator, right);
     }
 
     return expr;
@@ -132,24 +160,36 @@ Expr* factor(Parser* par) {
 
 
 Expr* term(Parser* par) {
-   Expr expr = factor(par);
+   Expr* expr = factor(par);
 
-   while (match(MINUS, PLUS)) {
-     Token operator = previous();
-     Expr right = factor();
-     expr = new Expr.Binary(expr, operator, right);
+   while (par->match(par, 2, MINUS, PLUS)) {
+     Token* operator = par->previous(par);
+     Expr* right = factor(par);
+     expr = newExprBinary(expr, operator, right);
    }
 
    return expr;
 }
 
 Expr* comparison(Parser* par) {
-    Expr expr = term();
+    Expr* expr = term(par);
 
-    while (match(GREATER, GREATER_EQUAL, LESS, LESS_EQUAL)) {
-        Token operator = previous();
-        Expr right = term();
-        expr = new Expr.Binary(expr, operator, right);
+    while (par->match(par, 4, GREATER, GREATER_EQUAL, LESS, LESS_EQUAL)) {
+        Token* operator = par->previous(par);
+        Expr* right = term(par);
+        expr = newExprBinary(expr, operator, right);
+    }
+
+    return expr;
+}
+
+Expr* equality(Parser* par) {
+    Expr* expr = comparison(par);
+
+    while (par->match(par, 2, BANG_EQUAL, EQUAL_EQUAL)) {
+        Token* operator = par->previous(par);
+        Expr* right = comparison(par);
+        expr = newExprBinary(expr, operator, right);
     }
 
     return expr;
@@ -157,17 +197,4 @@ Expr* comparison(Parser* par) {
 
 Expr* expression(Parser* par) {
     return equality(par);
-}
-
-
-Expr* equality(Parser* par) {
-    Expr expr = comparison();
-
-    while (match(BANG_EQUAL, EQUAL_EQUAL)) {
-        Token operator = previous();
-        Expr right = comparison();
-        expr = newExprBinary(expr, operator, right);
-    }
-
-    return expr;
 }

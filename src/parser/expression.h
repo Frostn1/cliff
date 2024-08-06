@@ -13,29 +13,31 @@ typedef enum {
 
 }ExprType;
 
-typedef struct Expr {
+typedef struct Expr Expr;
+
+struct Expr {
 
     ExprType type;
     union {
-        typedef struct Binary {
+        struct Binary {
             Expr* left;
             Token* op;
             Expr* right;
         } Binary;
-        typedef struct Grouping {
+        struct Grouping {
             Expr* expression;
         } Grouping;
-        typedef struct Literal {
+        struct Literal {
             Token* value;
         } Literal;
-        typedef struct Unary {
+        struct Unary {
             Token* op;
             Expr* right;
         } Unary;
     };
 
     void (*free)(Expr* expr);
-} Expr;
+};
 
 Expr* newExprBinary(Expr* left, Token* op, Expr* right);
 Expr* newExprGrouping(Expr* expression);
@@ -47,6 +49,8 @@ void __FREE_GROUPING__(Expr* expr);
 void __FREE_LITERAL__(Expr* expr);
 void __FREE_UNARY__(Expr* expr);
 
+
+void __ACCEPT_BINARY();
 
 
 

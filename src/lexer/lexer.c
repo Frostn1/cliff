@@ -303,26 +303,26 @@ Token* scanLexer(Lexer* lex) {
 	if (isAlpha(show(lex))) return makeKeywordOrIdentifier(lex);
 
 	switch (lex->currentChar) {
-	case '(': return makeToken(lex, TOKEN_LEFT_PAREN);
-	case ')': return makeToken(lex, TOKEN_RIGHT_PAREN);
-	case '{': return makeToken(lex, TOKEN_LEFT_BRACE);
-	case '}': return makeToken(lex, TOKEN_RIGHT_BRACE);
-	case '[': return makeToken(lex, TOKEN_LEFT_BRACKET);
-	case ']': return makeToken(lex, TOKEN_RIGHT_BRACKET);
-	case ';': return makeToken(lex, TOKEN_SEMICOLON);
-	case ',': return makeToken(lex, TOKEN_COMMA);
+	case '(': return makeToken(lex, LEFT_PAREN);
+	case ')': return makeToken(lex, RIGHT_PAREN);
+	case '{': return makeToken(lex, LEFT_BRACE);
+	case '}': return makeToken(lex, RIGHT_BRACE);
+	case '[': return makeToken(lex, LEFT_BRACKET);
+	case ']': return makeToken(lex, RIGHT_BRACKET);
+	case ';': return makeToken(lex, SEMICOLON);
+	case ',': return makeToken(lex, COMMA);
 
-	case '+': return makeToken(lex, match(lex, '=') ? TOKEN_PLUS_EQUAL : match(lex, '+') ? TOKEN_PLUS_PLUS : TOKEN_PLUS);
-	case '-': return makeToken(lex, match(lex, '=') ? TOKEN_MINUS_EQUAL : match(lex, '-') ? TOKEN_MINUS_MINUS : match(lex, '>') ? TOKEN_MINUS_MORE : TOKEN_MINUS);
-	case '*': return makeToken(lex, match(lex, '=') ? TOKEN_STAR_EQUAL : TOKEN_STAR);
-	case '/': return makeToken(lex, match(lex, '=') ? TOKEN_SLASH_EQUAL : TOKEN_SLASH);
+	case '+': return makeToken(lex, match(lex, '=') ? TOKEN_PLUS_EQUAL : match(lex, '+') ? TOKEN_PLUS_PLUS : PLUS);
+	case '-': return makeToken(lex, match(lex, '=') ? TOKEN_MINUS_EQUAL : match(lex, '-') ? TOKEN_MINUS_MINUS : match(lex, '>') ? TOKEN_MINUS_MORE : MINUS);
+	case '*': return makeToken(lex, match(lex, '=') ? TOKEN_STAR_EQUAL : STAR);
+	case '/': return makeToken(lex, match(lex, '=') ? TOKEN_SLASH_EQUAL : SLASH);
 	case '%': return makeToken(lex, match(lex, '=') ? TOKEN_MODULO_EQUAL : TOKEN_MODULO);
 
-	case '!': return makeToken(lex, match(lex, '=') ? TOKEN_BANG_EQUAL : TOKEN_BANG);
-	case '=': return makeToken(lex, match(lex, '=') ? TOKEN_EQUAL_EQUAL : match(lex, '>') ? TOKEN_EQUAL_GREATER : TOKEN_EQUAL);
+	case '!': return makeToken(lex, match(lex, '=') ? BANG_EQUAL : BANG);
+	case '=': return makeToken(lex, match(lex, '=') ? EQUAL_EQUAL : match(lex, '>') ? EQUAL_GREATER : EQUAL);
 
-	case '>': return makeToken(lex, match(lex, '=') ? TOKEN_GREATER_EQUAL : TOKEN_GREATER);
-	case '<': return makeToken(lex, match(lex, '=') ? TOKEN_LESS_EQUAL : TOKEN_LESS);
+	case '>': return makeToken(lex, match(lex, '=') ? GREATER_EQUAL : GREATER);
+	case '<': return makeToken(lex, match(lex, '=') ? LESS_EQUAL : LESS);
 
 	case '"':
 	case '\'':

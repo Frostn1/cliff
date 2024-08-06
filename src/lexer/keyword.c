@@ -1,20 +1,21 @@
 #include "keyword.h"
 
 KeywordType keywordTypes[] = {
-	{"else", TOKEN_ELSE},
-	{"false", TOKEN_FALSE},
-	{"for", TOKEN_FOR},
-	{"if", TOKEN_IF},
-	{"print", TOKEN_PRINT},
-	{"return", TOKEN_RETURN},
-	{"fn", TOKEN_FUNCTION},
-	{"true", TOKEN_TRUE},
-	{"loop", TOKEN_LOOP},
+	{"else", ELSE},
+	{"false", FALSE},
+	{"for", FOR},
+	{"if", IF},
+	{"print", PRINT},
+	{"return", RETURN},
+	{"fn", FUNCTION},
+	{"true", TRUE},
+	{"loop", LOOP},
+	{"nill", NILL},
 
 	// Variables Primitive Usable Types
-	{"int", TOKEN_INT_V},
-	{"float", TOKEN_FLOAT_V},
-	{"string", TOKEN_STRING_V},
+	// {"int", TOKEN_INT_V},
+	// {"float", TOKEN_FLOAT_V},
+	// {"string", TOKEN_STRING_V},
 
 	{NULL, TOKEN_EOF}
 };
