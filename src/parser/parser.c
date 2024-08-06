@@ -16,6 +16,7 @@ void newParser(Parser* par, Lexer* lex) {
 	// par->table = (Table*)malloc(sizeof(Table));
 	// newTable(par->table);
 	// loadFunctionsToTable(par->table);
+	par->advance(par);
 }
 
 
@@ -121,7 +122,7 @@ Token* consume(Parser* par, TokenType type, char* message) {
 Expr* primary(Parser* par) {
     if (par->match(par, 3, FALSE, TRUE, NULL)) return newExprLiteral(par->current);
 
-    if (par->match(par, 2, TOKEN_NUMBER, TOKEN_STRING)) {
+    if (par->match(par, 2, NUMBER, STRING)) {
       return newExprLiteral(par->previous(par));
     }
 
@@ -132,12 +133,13 @@ Expr* primary(Parser* par) {
     }
 
     error(par, par->peek(par),"Expect expression.");
+    return NULL;
 }
 
 
 
 Expr* unary(Parser* par) {
-    if (par->match(par, 2, BANG, MINUS)) {
+    if (par->match(par, 3, BANG, MINUS, PLUS)) {
       Token* operator = par->previous(par);
       Expr* right = unary(par);
       return newExprUnary(operator, right);
@@ -160,7 +162,7 @@ Expr* factor(Parser* par) {
 
 
 Expr* term(Parser* par) {
-   Expr* expr = factor(par);
+    Expr* expr = factor(par);
 
    while (par->match(par, 2, MINUS, PLUS)) {
      Token* operator = par->previous(par);

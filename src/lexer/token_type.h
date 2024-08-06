@@ -45,7 +45,7 @@ typedef enum {
 	TOKEN_IDENTIFIER = 38,//literal = 38s
 	TOKEN_INT = 39,
 	TOKEN_FLOAT = 40,
-	TOKEN_STRING = 41,
+	STRING = 41,
 	ELSE = 42,
 	FALSE = 43,
 	FOR = 44,
@@ -59,7 +59,7 @@ typedef enum {
 	TOKEN_EOF = 53,
 	TOKEN_END_LINE = 54,
 	NILL = 55,
-	TOKEN_NUMBER = 56,
+	NUMBER = 56,
 	PRINT = 57
 
 } TokenType;
