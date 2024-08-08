@@ -106,7 +106,7 @@ void eatWhiteSpace(Lexer* lex) {
 void saveChar(Lexer* lex, char c) {
     if(lex->saved) {
         if(lex->isChunkSize == CHUNK_SIZE) {
-            realloc(lex->saved, (lex->savedSize + CHUNK_SIZE) * sizeof(char));
+            lex->saved = realloc(lex->saved, (lex->savedSize + CHUNK_SIZE) * sizeof(char));
             lex->isChunkSize = 0;
         }
     } else if (lex->saved == NULL) {
@@ -162,7 +162,7 @@ Token* makeToken(Lexer* lex, TokenType type) {
 Token* makeErrorToken(Lexer* lex, char* msg, int startLine) {
 	Token* toke = (Token*)malloc(sizeof(Token));
 
-	toke->type = TOKEN_ERROR;
+	toke->type = ERROR;
 	toke->lexeme = msg;
 	toke->length = strlen(msg);
 	toke->line = startLine != -1 ? startLine : lex->line;
@@ -235,7 +235,7 @@ Token* makeKeywordOrIdentifier(Lexer* lex) {
 	// Return an identifier
 	Token* toke = (Token*)malloc(sizeof(Token));
 
-	toke->type = TOKEN_IDENTIFIER;
+	toke->type = IDENTIFIER;
 	toke->length = lex->savedSize;
 	toke->lexeme = (char*)malloc(sizeof(char) * (toke->length + 1));
 	strncpy(toke->lexeme, lex->saved, toke->length);
@@ -295,7 +295,7 @@ Token* makeString(Lexer* lex, char terminator) {
 Token* scanLexer(Lexer* lex) {
 	eatWhiteSpace(lex);
 	lex->start = lex->index;
-	if (isAtEnd(lex)) return makeToken(lex, TOKEN_EOF);
+	if (isAtEnd(lex)) return makeToken(lex, T_EOF);
 
 	if (isDigit(show(lex))) return makeNumber(lex);
 	if (isAlpha(show(lex))) return makeKeywordOrIdentifier(lex);
@@ -310,15 +310,16 @@ Token* scanLexer(Lexer* lex) {
 	case ';': return makeToken(lex, SEMICOLON);
 	case ',': return makeToken(lex, COMMA);
 
-	case '+': return makeToken(lex, match(lex, '=') ? TOKEN_PLUS_EQUAL : match(lex, '+') ? TOKEN_PLUS_PLUS : PLUS);
-	case '-': return makeToken(lex, match(lex, '=') ? TOKEN_MINUS_EQUAL : match(lex, '-') ? TOKEN_MINUS_MINUS : match(lex, '>') ? TOKEN_MINUS_MORE : MINUS);
-	case '*': return makeToken(lex, match(lex, '=') ? TOKEN_STAR_EQUAL : STAR);
-	case '/': return makeToken(lex, match(lex, '=') ? TOKEN_SLASH_EQUAL : SLASH);
-	case '%': return makeToken(lex, match(lex, '=') ? TOKEN_MODULO_EQUAL : TOKEN_MODULO);
+	case '+': return makeToken(lex, match(lex, '=') ? PLUS_EQUAL : match(lex, '+') ? PLUS_PLUS : PLUS);
+	case '-': return makeToken(lex, match(lex, '=') ? MINUS_EQUAL : match(lex, '-') ? MINUS_MINUS : match(lex, '>') ? MINUS_GREATER : MINUS);
+	case '*': return makeToken(lex, match(lex, '=') ? STAR_EQUAL : STAR);
+	case '/': return makeToken(lex, match(lex, '=') ? SLASH_EQUAL : SLASH);
+	case '%': return makeToken(lex, match(lex, '=') ? MODULO_EQUAL : MODULO);
 
 	case '!': return makeToken(lex, match(lex, '=') ? BANG_EQUAL : BANG);
 	case '=': return makeToken(lex, match(lex, '=') ? EQUAL_EQUAL : match(lex, '>') ? EQUAL_GREATER : EQUAL);
-
+	case '?': return makeToken(lex, match(lex, '?') ? QUESTION_QUESTION : QUESTION);
+	case '.': return makeToken(lex, match(lex, '.') ? DOT_DOT : DOT);
 	case '>': return makeToken(lex, match(lex, '=') ? GREATER_EQUAL : GREATER);
 	case '<': return makeToken(lex, match(lex, '=') ? LESS_EQUAL : LESS);
 
@@ -326,7 +327,7 @@ Token* scanLexer(Lexer* lex) {
 	case '\'':
 		return makeString(lex, lex->currentChar);
 	case '\n':
-		return makeToken(lex, TOKEN_END_LINE);
+		return makeToken(lex, END_LINE);
 	default:
 		// -1 in the final arg in the `makeErrorToken` function call tells me wheter I should ignore the line given from the lexer itself and use a new line I give it or use the line from the lexer
 		// If -1 is used then I should just used the line from the lexer, if any other number I should use said number instead

@@ -1,23 +1,17 @@
 #include "keyword.h"
 
 KeywordType keywordTypes[] = {
+	{"if", IF},
 	{"else", ELSE},
+	{"true", TRUE},
 	{"false", FALSE},
 	{"for", FOR},
-	{"if", IF},
+	{"loop", LOOP},
+	{"fn", FUNCTION},
 	{"print", PRINT},
 	{"return", RETURN},
-	{"fn", FUNCTION},
-	{"true", TRUE},
-	{"loop", LOOP},
 	{"nill", NILL},
-
-	// Variables Primitive Usable Types
-	// {"int", TOKEN_INT_V},
-	// {"float", TOKEN_FLOAT_V},
-	// {"string", TOKEN_STRING_V},
-
-	{NULL, TOKEN_EOF}
+	{NULL, T_EOF}
 };
 
 char* findKeywordByType(TokenType type) {

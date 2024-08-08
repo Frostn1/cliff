@@ -71,6 +71,7 @@ CMakeFiles/cliff.dir/main.c.o
  /mnt/c/Work/cliff/src/parser/parser.h
  /mnt/c/Work/cliff/src/lexer/lexer.h
  /mnt/c/Work/cliff/src/lexer/token_type.h
+ /mnt/c/Work/cliff/src/debug.h
  /mnt/c/Work/cliff/src/parser/expression.h
  /mnt/c/Work/cliff/src/lexer/token.h
  /mnt/c/Work/cliff/src/tool/visitor.h
@@ -454,6 +455,9 @@ CMakeFiles/cliff.dir/src/parser/parser.c.o
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h
  /mnt/c/Work/cliff/src/lexer/token.h
  /mnt/c/Work/cliff/src/lexer/token_type.h
+ /mnt/c/Work/cliff/src/debug.h
+ /mnt/c/Work/cliff/src/lexer/keyword.h
+ /mnt/c/Work/cliff/src/lexer/lexer.h
  /mnt/c/Work/cliff/src/parser/expression.h
  /mnt/c/Work/cliff/src/lexer/token.h
 

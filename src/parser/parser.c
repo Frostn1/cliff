@@ -17,6 +17,8 @@ void newParser(Parser* par, Lexer* lex) {
 	// newTable(par->table);
 	// loadFunctionsToTable(par->table);
 	par->advance(par);
+	par->advance(par);
+
 }
 
 
@@ -29,7 +31,7 @@ void error(Parser* parser, Token* token, const char* message) {
 	fprintf(stderr, "[Line %d] Error", token->line);
 
 	//check type
-	if (token->type == TOKEN_EOF || token->type == TOKEN_END_LINE) {
+	if (token->type == T_EOF || token->type == END_LINE) {
 		fprintf(stderr, " at end");
 	}
 
@@ -65,7 +67,7 @@ bool __CHECK__(Parser* par, TokenType type) {
 }
 
 bool __IS_AT_END__(Parser* par) {
-    return par->peek(par)->type == TOKEN_EOF;
+    return par->peek(par)->type == T_EOF;
 }
 
 Token* __PEEK__(Parser* par) {
@@ -120,6 +122,11 @@ Token* consume(Parser* par, TokenType type, char* message) {
 // ============================== Parsing ==============================
 
 Expr* primary(Parser* par) {
+    printf("PRIMARY previous\n");
+    printToken(par->previous(par));
+    printf("\nPRIMARY current\n");
+    printToken(par->peek(par));
+    // printf("primary %d", par->cu)
     if (par->match(par, 3, FALSE, TRUE, NULL)) return newExprLiteral(par->current);
 
     if (par->match(par, 2, NUMBER, STRING)) {

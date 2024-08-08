@@ -70,6 +70,7 @@ CMakeFiles/cliff.dir/main.c.o: main.c \
   src/parser/parser.h \
   src/lexer/lexer.h \
   src/lexer/token_type.h \
+  src/debug.h \
   src/parser/expression.h \
   src/lexer/token.h \
   src/tool/visitor.h \
@@ -446,6 +447,9 @@ CMakeFiles/cliff.dir/src/parser/parser.c.o: src/parser/parser.c \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   src/lexer/token.h \
   src/lexer/token_type.h \
+  src/debug.h \
+  src/lexer/keyword.h \
+  src/lexer/lexer.h \
   src/parser/expression.h \
   src/lexer/token.h
 

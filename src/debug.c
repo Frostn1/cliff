@@ -3,9 +3,9 @@
 
 
 void printToken(Token* token) {
-    if(token == NULL) return;
+    if (token == NULL) return;
 
-	if (token->type == TOKEN_ERROR) {
+	if (token->type == ERROR) {
 		printf("Error\t%d-%d\t%.*s\n", token->line, token->column, token->length, token->lexeme);
 		return;
 	}
