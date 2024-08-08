@@ -17,7 +17,7 @@ void newParser(Parser* par, Lexer* lex) {
 	// newTable(par->table);
 	// loadFunctionsToTable(par->table);
 	par->advance(par);
-	par->advance(par);
+	// par->advance(par);
 
 }
 
@@ -122,12 +122,7 @@ Token* consume(Parser* par, TokenType type, char* message) {
 // ============================== Parsing ==============================
 
 Expr* primary(Parser* par) {
-    printf("PRIMARY previous\n");
-    printToken(par->previous(par));
-    printf("\nPRIMARY current\n");
-    printToken(par->peek(par));
-    // printf("primary %d", par->cu)
-    if (par->match(par, 3, FALSE, TRUE, NULL)) return newExprLiteral(par->current);
+    if (par->match(par, 3, FALSE, TRUE, NILL)) return newExprLiteral(par->current);
 
     if (par->match(par, 2, NUMBER, STRING)) {
       return newExprLiteral(par->previous(par));
@@ -146,7 +141,7 @@ Expr* primary(Parser* par) {
 
 
 Expr* unary(Parser* par) {
-    if (par->match(par, 3, BANG, MINUS, PLUS)) {
+    if (par->match(par, 3, BANG, MINUS, PLUS, TILDA)) {
       Token* operator = par->previous(par);
       Expr* right = unary(par);
       return newExprUnary(operator, right);
@@ -157,7 +152,6 @@ Expr* unary(Parser* par) {
 
 Expr* factor(Parser* par) {
     Expr* expr = unary(par);
-
     while (par->match(par, 2, SLASH, STAR)) {
       Token* operator = par->previous(par);
       Expr* right = unary(par);

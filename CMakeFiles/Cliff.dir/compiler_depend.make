@@ -71,11 +71,12 @@ CMakeFiles/cliff.dir/main.c.o: main.c \
   src/lexer/lexer.h \
   src/lexer/token_type.h \
   src/debug.h \
-  src/parser/expression.h \
-  src/lexer/token.h \
   src/tool/visitor.h \
   src/tool/string_builder.h \
-  src/parser/expression.h
+  src/parser/expression.h \
+  src/lexer/token.h \
+  src/parser/expression.h \
+  src/tool/visitor.h
 
 CMakeFiles/cliff.dir/src/debug.c.o: src/debug.c \
   /usr/include/stdc-predef.h \
@@ -450,8 +451,11 @@ CMakeFiles/cliff.dir/src/parser/parser.c.o: src/parser/parser.c \
   src/debug.h \
   src/lexer/keyword.h \
   src/lexer/lexer.h \
+  src/tool/visitor.h \
+  src/tool/string_builder.h \
   src/parser/expression.h \
-  src/lexer/token.h
+  src/lexer/token.h \
+  src/parser/expression.h
 
 CMakeFiles/cliff.dir/src/tool/string_builder.c.o: src/tool/string_builder.c \
   /usr/include/stdc-predef.h \
@@ -722,8 +726,8 @@ src/lexer/keyword.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
-src/tool/visitor.h:
-
 src/parser/expression.h:
+
+src/tool/visitor.h:
 
 src/lexer/lexer.h:

@@ -12,7 +12,7 @@
 // }
 
 
-char* accept(Expr* expr) {
+char* acceptExpr(Expr* expr) {
     char* str = NULL;
     switch(expr->type) {
         case EXPR_BINARY:
@@ -45,7 +45,7 @@ char* parenthesize(char* name, size_t count, ...) {
         expr = va_arg(ptr, Expr*);
         sb_append(builder, " ");
 
-        sb_append(builder, accept(expr));
+        sb_append(builder, acceptExpr(expr));
     }
     sb_append(builder, ")");
 

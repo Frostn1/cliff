@@ -72,11 +72,12 @@ CMakeFiles/cliff.dir/main.c.o
  /mnt/c/Work/cliff/src/lexer/lexer.h
  /mnt/c/Work/cliff/src/lexer/token_type.h
  /mnt/c/Work/cliff/src/debug.h
- /mnt/c/Work/cliff/src/parser/expression.h
- /mnt/c/Work/cliff/src/lexer/token.h
  /mnt/c/Work/cliff/src/tool/visitor.h
  /mnt/c/Work/cliff/src/tool/string_builder.h
  /mnt/c/Work/cliff/src/parser/expression.h
+ /mnt/c/Work/cliff/src/lexer/token.h
+ /mnt/c/Work/cliff/src/parser/expression.h
+ /mnt/c/Work/cliff/src/tool/visitor.h
 
 CMakeFiles/cliff.dir/src/debug.c.o
  /mnt/c/Work/cliff/src/debug.c
@@ -458,8 +459,11 @@ CMakeFiles/cliff.dir/src/parser/parser.c.o
  /mnt/c/Work/cliff/src/debug.h
  /mnt/c/Work/cliff/src/lexer/keyword.h
  /mnt/c/Work/cliff/src/lexer/lexer.h
+ /mnt/c/Work/cliff/src/tool/visitor.h
+ /mnt/c/Work/cliff/src/tool/string_builder.h
  /mnt/c/Work/cliff/src/parser/expression.h
  /mnt/c/Work/cliff/src/lexer/token.h
+ /mnt/c/Work/cliff/src/parser/expression.h
 
 CMakeFiles/cliff.dir/src/tool/string_builder.c.o
  /mnt/c/Work/cliff/src/tool/string_builder.c

@@ -310,6 +310,7 @@ Token* scanLexer(Lexer* lex) {
 	case ';': return makeToken(lex, SEMICOLON);
 	case ',': return makeToken(lex, COMMA);
 
+	case '~': return makeToken(lex, TILDA);
 	case '+': return makeToken(lex, match(lex, '=') ? PLUS_EQUAL : match(lex, '+') ? PLUS_PLUS : PLUS);
 	case '-': return makeToken(lex, match(lex, '=') ? MINUS_EQUAL : match(lex, '-') ? MINUS_MINUS : match(lex, '>') ? MINUS_GREATER : MINUS);
 	case '*': return makeToken(lex, match(lex, '=') ? STAR_EQUAL : STAR);
@@ -322,6 +323,10 @@ Token* scanLexer(Lexer* lex) {
 	case '.': return makeToken(lex, match(lex, '.') ? DOT_DOT : DOT);
 	case '>': return makeToken(lex, match(lex, '=') ? GREATER_EQUAL : GREATER);
 	case '<': return makeToken(lex, match(lex, '=') ? LESS_EQUAL : LESS);
+	case '&': return makeToken(lex, match(lex, '&') ? AND_AND : AND);
+	case '|': return makeToken(lex, match(lex, '|') ? OR_OR : match(lex, '>') ? OR_GREATER : OR);
+	case ':': return makeToken(lex, match(lex, ':') ? COLON_COLON : COLON);
+
 
 	case '"':
 	case '\'':

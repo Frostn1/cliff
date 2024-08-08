@@ -13,7 +13,7 @@
 // }Visitor;
 
 // Visitor* newVisitor();
-char* accept(Expr* expr);
+char* acceptExpr(Expr* expr);
 char* parenthesize(char* name, size_t count, ...);
 char* visitBinaryExpr(Expr* expr);
 char* visitGroupingExpr(Expr* expr);

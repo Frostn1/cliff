@@ -7,6 +7,7 @@
 #include "../lexer/lexer.h"
 #include "../lexer/token_type.h"
 #include "../debug.h"
+#include "../tool/visitor.h"
 #include "expression.h"
 
 // #include "SymbolTable.h"

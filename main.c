@@ -25,7 +25,7 @@ int main() {
     newLexer(&lexer, filePointer);
     newParser(&parser,&lexer);
     Expr* expr = parse(&parser);
-    printf("%s", accept(expr));
+    printf("%s", acceptExpr(expr));
     // Token* token = NULL;
 
     // do {
