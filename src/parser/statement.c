@@ -1,7 +1,7 @@
 #include "statement.h"
 
 void __FREE_EXPR__(Statement* stat);
-void __FREE_DECL__(Statement* stat)
+void __FREE_DECL__(Statement* stat);
 
 Statement* newStatementExpr(Expr* expr) {
     Statement* stat = (Statement*)malloc(sizeof(Statement));
