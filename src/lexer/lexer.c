@@ -203,8 +203,6 @@ Token* makeNumber(Lexer* lex) {
 
 Token* makeKeywordOrIdentifier(Lexer* lex) {
     saveChar(lex, lex->currentChar);
-	advanceWithSave(lex); //first letter can only be alpha
-
 	while (isIdentifier(peek(lex))) {
 		advanceWithSave(lex);
 	}

@@ -1,8 +1,9 @@
 #include <stdio.h>
-#include "debug.h"
+// #include "debug.h"
 #include "src/lexer/lexer.h"
 #include "src/parser/parser.h"
 #include "src/tool/visitor.h"
+// #include "src/tool/visitor.h"
 
 char* getFileContent(char* filePath) {
 	FILE* filePointer = fopen(filePath, "r");
@@ -26,11 +27,5 @@ int main() {
     newParser(&parser,&lexer);
     Expr* expr = parse(&parser);
     printf("%s", acceptExpr(expr));
-    // Token* token = NULL;
-
-    // do {
-    //     printToken(token);
-    // } while((token = scanLexer(&lexer))->type != TOKEN_EOF);
-    // fclose(filePointer);
-    // freeLexer(&lexer);
+    return 0;
 }

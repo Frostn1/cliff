@@ -6,9 +6,9 @@
 
 #include "../lexer/lexer.h"
 #include "../lexer/token_type.h"
-#include "../debug.h"
-#include "../tool/visitor.h"
 #include "expression.h"
+#include "statement.h"
+#include "declaration.h"
 
 // #include "SymbolTable.h"
 // #include "LoadBuiltin.h"
@@ -57,7 +57,7 @@ typedef enum {
 
 // Creates a new parser
 void newParser(Parser* par, Lexer* lex);
-Expr* parse(Parser* par);
+Statement* parse(Parser* par);
 void synchronize(Parser* parser);
 
 // Utilities
@@ -84,5 +84,10 @@ Expr* primary(Parser* par);
 Expr* comparison(Parser* par);
 Expr* equality(Parser* par);
 
+Statement* statement(Parser* par);
+Statement* expressionStatement(Parser* par);
+
+Statement* variableDeclaration(Parser* par);
+Statement* declartion(Parser* par);
 
 #endif // !PARSER_H

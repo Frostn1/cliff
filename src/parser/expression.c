@@ -1,5 +1,5 @@
 #include "expression.h"
-
+#include "../debug.h"
 
 Expr* newExprBinary(Expr* left, Token* op, Expr* right) {
     Expr* expr = (Expr*)malloc(sizeof(Expr));
@@ -22,6 +22,7 @@ Expr* newExprLiteral(Token* value) {
     expr->type = EXPR_LITERAL;
     expr->Literal.value = value;
     expr->free = &__FREE_LITERAL__;
+    printToken(value);
     return expr;
 }
 Expr* newExprUnary(Token* op, Expr* right) {

@@ -107,8 +107,8 @@ void __SYNCHRONIZE__(Parser* par) {
 
 // ============================== X ==============================
 
-Expr* parse(Parser* par) {
-    return expression(par);
+Statement* parse(Parser* par) {
+    return expressionStatement(par);
 }
 
 
@@ -124,7 +124,7 @@ Token* consume(Parser* par, TokenType type, char* message) {
 Expr* primary(Parser* par) {
     if (par->match(par, 3, FALSE, TRUE, NILL)) return newExprLiteral(par->current);
 
-    if (par->match(par, 2, NUMBER, STRING)) {
+    if (par->match(par, 3, NUMBER, STRING, IDENTIFIER)) {
       return newExprLiteral(par->previous(par));
     }
 
@@ -201,3 +201,35 @@ Expr* equality(Parser* par) {
 Expr* expression(Parser* par) {
     return equality(par);
 }
+
+// Statement* statement(Parser* par) {
+//     return expressionStatement(par);
+// }
+void __FREE_EXPR__(Statement* stat) {
+    stat->expr->free(stat->expr);
+    free(stat);
+}
+Statement* newStatementExpr(Expr* expr) {
+    Statement* stat = (Statement*)malloc(sizeof(Statement));
+    stat->type = STATEMENT_EXPR;
+    stat->expr = expr;
+    stat->free = &__FREE_EXPR__;
+    return stat;
+}
+Statement* expressionStatement(Parser* par) {
+    Expr* expr = expression(par);
+    return newStatementExpr(expr);
+}
+// Statement* variableDeclaration(Parser* par) {
+//     Token* name = consume(par, IDENTIFIER, "Expect variable name.");
+//     consume(par, COLON, "Expecting ':' token.");
+//     Token* type = consume(par, IDENTIFIER, "Expect variable type.");
+//     Expr* initialValue = NULL;
+//     if (par->match(par, 1, EQUAL)) initialValue = expression(par);
+//     return newStatementDecl(newDeclarationVariable(name, type, initialValue));
+// }
+
+// Statement* declartion(Parser* par) {
+//     if(par->match(par, 1, IDENTIFIER)) return variableDeclaration(par);
+//     return statement(par);
+// }

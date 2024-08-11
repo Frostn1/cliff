@@ -2,16 +2,6 @@
 #include "string_builder.h"
 #include <stdarg.h>
 
-// Visitor* newVisitor() {
-//     Visitor* visitor = (Visitor*)malloc(sizeof(Visitor));
-//     visitor->visitBinaryExpr = &visitBinaryExpr;
-//     visitor->visitGroupingExpr = &visitGroupingExpr;
-//     visitor->visitUnaryExpr = &visitUnaryExpr;
-//     visitor->visitLiteralExpr = &visitLiteralExpr;
-//     return visitor;
-// }
-
-
 char* acceptExpr(Expr* expr) {
     char* str = NULL;
     switch(expr->type) {

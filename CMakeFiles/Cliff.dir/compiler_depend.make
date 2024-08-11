@@ -27,7 +27,11 @@ CMakeFiles/cliff.dir/main.c.o: main.c \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
-  src/debug.h \
+  src/lexer/lexer.h \
+  /usr/include/string.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/strings.h \
   /usr/include/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
@@ -56,27 +60,20 @@ CMakeFiles/cliff.dir/main.c.o: main.c \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
-  src/lexer/keyword.h \
-  src/lexer/token_type.h \
-  src/lexer/lexer.h \
-  /usr/include/string.h \
-  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
-  /usr/include/strings.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h \
+  src/lexer/token_type.h \
   src/lexer/keyword.h \
   src/lexer/token.h \
-  src/lexer/lexer.h \
   src/parser/parser.h \
   src/lexer/lexer.h \
   src/lexer/token_type.h \
-  src/debug.h \
-  src/tool/visitor.h \
-  src/tool/string_builder.h \
   src/parser/expression.h \
   src/lexer/token.h \
-  src/parser/expression.h \
-  src/tool/visitor.h
+  src/parser/statement.h \
+  src/parser/declaration.h \
+  src/tool/visitor.h \
+  src/tool/string_builder.h \
+  src/parser/expression.h
 
 CMakeFiles/cliff.dir/src/debug.c.o: src/debug.c \
   /usr/include/stdc-predef.h \
@@ -378,7 +375,17 @@ CMakeFiles/cliff.dir/src/parser/expression.c.o: src/parser/expression.c \
   /usr/include/alloca.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
   src/lexer/token.h \
-  src/lexer/token_type.h
+  src/lexer/token_type.h \
+  src/debug.h \
+  src/lexer/keyword.h \
+  src/lexer/lexer.h \
+  /usr/include/string.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/strings.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h \
+  src/lexer/keyword.h \
+  src/lexer/token.h
 
 CMakeFiles/cliff.dir/src/parser/parse_tree.c.o: src/parser/parse_tree.c \
   /usr/include/stdc-predef.h
@@ -448,14 +455,10 @@ CMakeFiles/cliff.dir/src/parser/parser.c.o: src/parser/parser.c \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   src/lexer/token.h \
   src/lexer/token_type.h \
-  src/debug.h \
-  src/lexer/keyword.h \
-  src/lexer/lexer.h \
-  src/tool/visitor.h \
-  src/tool/string_builder.h \
   src/parser/expression.h \
   src/lexer/token.h \
-  src/parser/expression.h
+  src/parser/statement.h \
+  src/parser/declaration.h
 
 CMakeFiles/cliff.dir/src/tool/string_builder.c.o: src/tool/string_builder.c \
   /usr/include/stdc-predef.h \
@@ -596,19 +599,19 @@ src/lexer/keyword.c:
 
 src/debug.c:
 
+src/parser/statement.h:
+
 src/parser/parser.h:
 
 src/lexer/token.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h:
 
-/usr/include/strings.h:
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
-/usr/include/stdlib.h:
-
-/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
@@ -620,25 +623,13 @@ src/lexer/token.h:
 
 /usr/include/features.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
-
-/usr/include/x86_64-linux-gnu/sys/cdefs.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
-
-/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
-
-/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
-
-/usr/include/x86_64-linux-gnu/bits/waitflags.h:
-
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
+
+src/lexer/token_type.h:
+
+/usr/include/x86_64-linux-gnu/bits/endianness.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
 
@@ -648,6 +639,8 @@ src/debug.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
 
+/usr/include/strings.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
 /usr/include/stdio.h:
@@ -655,6 +648,14 @@ src/debug.h:
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
 /usr/include/alloca.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
+
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 
@@ -664,7 +665,23 @@ src/debug.h:
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
+src/tool/visitor.h:
+
+src/parser/expression.h:
+
+src/lexer/lexer.h:
+
+src/parser/declaration.h:
+
 /usr/include/features-time64.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
@@ -700,10 +717,6 @@ src/tool/string_builder.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/endianness.h:
-
-src/lexer/token_type.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
@@ -725,9 +738,3 @@ src/lexer/keyword.h:
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
-
-src/parser/expression.h:
-
-src/tool/visitor.h:
-
-src/lexer/lexer.h:

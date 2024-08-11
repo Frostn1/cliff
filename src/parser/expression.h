@@ -50,9 +50,4 @@ void __FREE_LITERAL__(Expr* expr);
 void __FREE_UNARY__(Expr* expr);
 
 
-void __ACCEPT_BINARY();
-
-
-
-
 #endif // !EXPRESSION_H
