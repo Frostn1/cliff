@@ -1,3 +1,3 @@
-/mnt/c/Users/nitay/Desktop/Programming/contrib/cliff/CMakeFiles/cliff.dir
-/mnt/c/Users/nitay/Desktop/Programming/contrib/cliff/CMakeFiles/edit_cache.dir
-/mnt/c/Users/nitay/Desktop/Programming/contrib/cliff/CMakeFiles/rebuild_cache.dir
+/mnt/c/Work/cliff/CMakeFiles/cliff.dir
+/mnt/c/Work/cliff/CMakeFiles/edit_cache.dir
+/mnt/c/Work/cliff/CMakeFiles/rebuild_cache.dir
