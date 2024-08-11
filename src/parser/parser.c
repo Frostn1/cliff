@@ -205,17 +205,18 @@ Expr* expression(Parser* par) {
 // Statement* statement(Parser* par) {
 //     return expressionStatement(par);
 // }
-void __FREE_EXPR__(Statement* stat) {
-    stat->expr->free(stat->expr);
-    free(stat);
-}
-Statement* newStatementExpr(Expr* expr) {
-    Statement* stat = (Statement*)malloc(sizeof(Statement));
-    stat->type = STATEMENT_EXPR;
-    stat->expr = expr;
-    stat->free = &__FREE_EXPR__;
-    return stat;
-}
+// void __FREE_EXPR__(Statement* stat) {
+//     stat->expr->free(stat->expr);
+//     free(stat);
+// }
+// Statement* newStatementExpr(Expr* expr) {
+//     Statement* stat = (Statement*)malloc(sizeof(Statement));
+//     stat->type = STATEMENT_EXPR;
+//     stat->expr = expr;
+//     stat->free = &__FREE_EXPR__;
+//     return stat;
+// }
+
 Statement* expressionStatement(Parser* par) {
     Expr* expr = expression(par);
     return newStatementExpr(expr);
