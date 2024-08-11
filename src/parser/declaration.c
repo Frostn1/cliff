@@ -1,5 +1,6 @@
 #include "declaration.h"
 
+void __FREE_VARIABLE__(Declaration* decl);
 
 Declaration* newDeclarationVariable(Token* name, Token* type, Expr* initialValue) {
     Declaration* decl = (Declaration*)malloc(sizeof(Declaration));

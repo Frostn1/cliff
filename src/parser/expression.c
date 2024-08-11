@@ -1,6 +1,11 @@
 #include "expression.h"
 #include "../debug.h"
 
+void __FREE_BINARY__(Expr* expr);
+void __FREE_GROUPING__(Expr* expr);
+void __FREE_LITERAL__(Expr* expr);
+void __FREE_UNARY__(Expr* expr);
+
 Expr* newExprBinary(Expr* left, Token* op, Expr* right) {
     Expr* expr = (Expr*)malloc(sizeof(Expr));
     expr->type = EXPR_BINARY;

@@ -29,10 +29,4 @@ struct Declaration {
 
 Declaration* newDeclarationVariable(Token* name, Token* type, Expr* initialValue);
 
-
-void __FREE_VARIABLE__(Declaration* decl);
-
-
-
-
 #endif // !EXPRESSION_H

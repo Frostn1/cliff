@@ -44,10 +44,5 @@ Expr* newExprGrouping(Expr* expression);
 Expr* newExprLiteral(Token* value);
 Expr* newExprUnary(Token* op, Expr* right);
 
-void __FREE_BINARY__(Expr* expr);
-void __FREE_GROUPING__(Expr* expr);
-void __FREE_LITERAL__(Expr* expr);
-void __FREE_UNARY__(Expr* expr);
-
 
 #endif // !EXPRESSION_H
