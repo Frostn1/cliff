@@ -27,9 +27,6 @@ struct Statement {
 Statement* newStatementExpr(Expr* expr);
 Statement* newStatementDecl(Declaration* decl);
 
-void __FREE_EXPR__(Statement* stat);
-void __FREE_DECL__(Statement* stat);
-
 
 
 
