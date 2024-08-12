@@ -12,7 +12,7 @@ int main() {
     newParser(&parser,&lexer);
     while(!parser.isAtEnd(&parser)) {
         Statement* stat = parse(&parser);
-        printf("%s", acceptStatment(stat));
+        printf("%s\n", acceptStatment(stat));
     }
     return 0;
 }

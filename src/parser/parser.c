@@ -131,7 +131,6 @@ Expr* primary(Parser* par) {
       consume(par, RIGHT_PAREN, "Expect ')' after expression.");
       return newExprGrouping(expr);
     }
-
     error(par, par->peek(par),"Expect expression.");
     return NULL;
 }
@@ -219,7 +218,6 @@ Statement* variableDeclaration(Parser* par) {
 }
 
 Statement* declartion(Parser* par) {
-    printf("LINE %d COLUMN %d\n", par->lex->line, par->lex->column);
     if(par->match(par, 1, IDENTIFIER)) return variableDeclaration(par);
     return statement(par);
 }

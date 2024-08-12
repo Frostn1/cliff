@@ -71,15 +71,9 @@ void eatWhiteSpace(Lexer* lex) {
 	case ' ':
 	case '\r':
 	case '\t':
+	case '\n':
 		advance(lex);
 		break;
-	case '\n':
-		if (peek(lex) == '\n') {
-			advance(lex);
-			break;
-		}
-		else return;
-
 		//comments
 	case '/':
 		if (peek(lex) == '/') {
