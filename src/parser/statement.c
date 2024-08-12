@@ -24,7 +24,6 @@ void __FREE_EXPR__(Statement* stat) {
     free(stat);
 }
 
-
 void __FREE_DECL__(Statement* stat) {
     stat->decl->free(stat->decl);
     free(stat);

@@ -13,7 +13,6 @@ Declaration* newDeclarationVariable(Token* name, Token* type, Expr* initialValue
     return decl;
 }
 
-
 void __FREE_VARIABLE__(Declaration* decl) {
     freeToken(decl->Variable.type);
     freeToken(decl->Variable.name);

@@ -108,16 +108,14 @@ void __SYNCHRONIZE__(Parser* par) {
 // ============================== X ==============================
 
 Statement* parse(Parser* par) {
-    return expressionStatement(par);
+    return declartion(par);
 }
-
 
 Token* consume(Parser* par, TokenType type, char* message) {
     if (par->check(par, type)) return par->advance(par);
     error(par, par->peek(par), message);
     exit(1);
 }
-
 
 // ============================== Parsing ==============================
 
@@ -202,35 +200,26 @@ Expr* expression(Parser* par) {
     return equality(par);
 }
 
-// Statement* statement(Parser* par) {
-//     return expressionStatement(par);
-// }
-// void __FREE_EXPR__(Statement* stat) {
-//     stat->expr->free(stat->expr);
-//     free(stat);
-// }
-// Statement* newStatementExpr(Expr* expr) {
-//     Statement* stat = (Statement*)malloc(sizeof(Statement));
-//     stat->type = STATEMENT_EXPR;
-//     stat->expr = expr;
-//     stat->free = &__FREE_EXPR__;
-//     return stat;
-// }
+Statement* statement(Parser* par) {
+    return expressionStatement(par);
+}
 
 Statement* expressionStatement(Parser* par) {
     Expr* expr = expression(par);
     return newStatementExpr(expr);
 }
-// Statement* variableDeclaration(Parser* par) {
-//     Token* name = consume(par, IDENTIFIER, "Expect variable name.");
-//     consume(par, COLON, "Expecting ':' token.");
-//     Token* type = consume(par, IDENTIFIER, "Expect variable type.");
-//     Expr* initialValue = NULL;
-//     if (par->match(par, 1, EQUAL)) initialValue = expression(par);
-//     return newStatementDecl(newDeclarationVariable(name, type, initialValue));
-// }
 
-// Statement* declartion(Parser* par) {
-//     if(par->match(par, 1, IDENTIFIER)) return variableDeclaration(par);
-//     return statement(par);
-// }
+Statement* variableDeclaration(Parser* par) {
+    Token* name = par->previous(par);
+    consume(par, COLON, "Expecting ':' token.");
+    Token* type = consume(par, IDENTIFIER, "Expect variable type.");
+    Expr* initialValue = NULL;
+    if (par->match(par, 1, EQUAL)) initialValue = expression(par);
+    return newStatementDecl(newDeclarationVariable(name, type, initialValue));
+}
+
+Statement* declartion(Parser* par) {
+    printf("LINE %d COLUMN %d\n", par->lex->line, par->lex->column);
+    if(par->match(par, 1, IDENTIFIER)) return variableDeclaration(par);
+    return statement(par);
+}

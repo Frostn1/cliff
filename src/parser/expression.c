@@ -15,6 +15,7 @@ Expr* newExprBinary(Expr* left, Token* op, Expr* right) {
     expr->free = &__FREE_BINARY__;
     return expr;
 }
+
 Expr* newExprGrouping(Expr* expression) {
     Expr* expr = (Expr*)malloc(sizeof(Expr));
     expr->type = EXPR_GROUPING;
@@ -22,14 +23,15 @@ Expr* newExprGrouping(Expr* expression) {
     expr->free = &__FREE_GROUPING__;
     return expr;
 }
+
 Expr* newExprLiteral(Token* value) {
     Expr* expr = (Expr*)malloc(sizeof(Expr));
     expr->type = EXPR_LITERAL;
     expr->Literal.value = value;
     expr->free = &__FREE_LITERAL__;
-    printToken(value);
     return expr;
 }
+
 Expr* newExprUnary(Token* op, Expr* right) {
     Expr* expr = (Expr*)malloc(sizeof(Expr));
     expr->type = EXPR_UNARY;
@@ -45,14 +47,17 @@ void __FREE_BINARY__(Expr* expr) {
     expr->Binary.right->free(expr->Binary.right);
     free(expr);
 }
+
 void __FREE_GROUPING__(Expr* expr) {
     expr->Grouping.expression->free(expr->Grouping.expression);
     free(expr);
 }
+
 void __FREE_LITERAL__(Expr* expr) {
     freeToken(expr->Literal.value);
     free(expr);
 }
+
 void __FREE_UNARY__(Expr* expr) {
     freeToken(expr->Unary.op);
     expr->Unary.right->free(expr->Unary.right);

@@ -19,13 +19,11 @@ struct Declaration {
             Token* name;
             Token* type;
             Expr* initialValue;
-        }Variable;
+        } Variable;
     };
 
     void (*free)(Declaration* expr);
 };
-
-
 
 Declaration* newDeclarationVariable(Token* name, Token* type, Expr* initialValue);
 

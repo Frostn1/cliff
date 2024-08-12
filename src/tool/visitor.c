@@ -21,6 +21,28 @@ char* acceptExpr(Expr* expr) {
     return str;
 }
 
+char* acceptStatment(Statement* stat) {
+    char* str = NULL;
+    switch(stat->type) {
+        case STATEMENT_EXPR:
+            str = acceptExpr(stat->expr);
+            break;
+        case STATEMENT_DECLARATION:
+            str = acceptDeclaration(stat->decl);
+            break;
+    }
+    return str;
+}
+
+char* acceptDeclaration(Declaration* decl) {
+    char* str = NULL;
+    switch(decl->type) {
+        case DECLARATION_VARIABLE:
+            str = visitVarDecl(decl);
+            break;
+    }
+    return str;
+}
 
 char* parenthesize(char* name, size_t count, ...) {
     StringBuilder* builder = sb_create();
@@ -40,6 +62,12 @@ char* parenthesize(char* name, size_t count, ...) {
     sb_append(builder, ")");
 
     return sb_concat(builder);
+}
+
+
+char* visitVarDecl(Declaration* decl) {
+    if (!decl->Variable.initialValue) return parenthesize(decl->Variable.name->lexeme, 1,  newExprLiteral(decl->Variable.type));
+    return parenthesize(decl->Variable.name->lexeme, 2, newExprLiteral(decl->Variable.type), decl->Variable.initialValue);
 }
 
 char* visitBinaryExpr(Expr* expr) {

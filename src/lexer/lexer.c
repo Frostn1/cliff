@@ -217,7 +217,7 @@ Token* makeKeywordOrIdentifier(Lexer* lex) {
 			strncpy(toke->lexeme, lex->saved, toke->length);
 			toke->lexeme[toke->length] = '\0';
 			toke->line = lex->line;
-			toke->column = lex->column - toke->length;
+			toke->column = lex->column - toke->length + 1;
 
 
 			free(lex->saved);
@@ -239,12 +239,13 @@ Token* makeKeywordOrIdentifier(Lexer* lex) {
 	strncpy(toke->lexeme, lex->saved, toke->length);
 	toke->lexeme[toke->length] = '\0';
 	toke->line = lex->line;
-	toke->column = lex->column - toke->length;
+	toke->column = lex->column - toke->length + 1;
+
+
 	free(lex->saved);
 	lex->saved = NULL;
 	lex->savedSize = 0;
 	lex->isChunkSize = 0;
-
 	advance(lex);
 
 	return toke;

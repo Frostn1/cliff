@@ -9,7 +9,7 @@
 #include "expression.h"
 #include "statement.h"
 #include "declaration.h"
-
+#include "../debug.h"
 // #include "SymbolTable.h"
 // #include "LoadBuiltin.h"
 

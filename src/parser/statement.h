@@ -27,9 +27,4 @@ struct Statement {
 Statement* newStatementExpr(Expr* expr);
 Statement* newStatementDecl(Declaration* decl);
 
-
-
-
-
-
 #endif // !EXPRESSION_H

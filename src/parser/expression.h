@@ -44,5 +44,4 @@ Expr* newExprGrouping(Expr* expression);
 Expr* newExprLiteral(Token* value);
 Expr* newExprUnary(Token* op, Expr* right);
 
-
 #endif // !EXPRESSION_H
